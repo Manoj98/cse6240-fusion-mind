@@ -98,6 +98,9 @@ def lemmatize(nlp, concept):
 
 
 def load_matcher(nlp, pattern_path):
+    """"
+    Go through this link for an example: https://spacy.io/usage/rule-based-matching
+    """
     with open(pattern_path, "r", encoding="utf8") as fin:
         all_patterns = json.load(fin)
 
@@ -242,6 +245,10 @@ def match_mentioned_concepts(sents, answers, num_processes):
 
 # To-do: examine prune
 def prune(data, cpnet_vocab_path):
+    """
+    Prune/Lemmatize all the question concepts (qc) and answer concepts (ac). 
+    For example, walker is removed if walk is already present.
+    """
     # reload cpnet_vocab
     with open(cpnet_vocab_path, "r", encoding="utf8") as fin:
         cpnet_vocab = [l.strip() for l in fin]
@@ -346,6 +353,9 @@ def ground(statement_path, cpnet_vocab_path, pattern_path, output_path, num_proc
 
 if __name__ == "__main__":
     create_matcher_patterns("../data/cpnet/concept.txt", "./matcher_res.txt", True)
+    # create_matcher_patterns("../data/cpnet/concept_trial.txt", "../data/cpnet/matcher_copy.json", False) # written by Manoj
+
+
     # ground("../data/statement/dev.statement.jsonl", "../data/cpnet/concept.txt", "../data/cpnet/matcher_patterns.json", "./ground_res.jsonl", 10, True)
 
     # s = "a revolving door is convenient for two direction travel, but it also serves as a security measure at a bank."

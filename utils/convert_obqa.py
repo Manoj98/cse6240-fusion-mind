@@ -10,6 +10,9 @@ BLANK_STR = "___"
 
 
 def convert_to_obqa_statement(qa_file: str, output_file1: str, output_file2: str):
+    """
+    Convert OBQA json files to statements by merging "stem" with "choices" in the input json file
+    """
     print(f'converting {qa_file} to entailment dataset...')
     nrow = sum(1 for _ in open(qa_file, 'r'))
     with open(output_file1, 'w') as output_handle1, open(output_file2, 'w') as output_handle2, open(qa_file, 'r') as qa_handle:
